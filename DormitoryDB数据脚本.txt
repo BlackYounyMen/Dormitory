@@ -1,0 +1,821 @@
+
+/****** Object:  Database [DormManageDB]    Script Date: 2021/05/31 10:10:27 ******/
+CREATE DATABASE [DormManageDB]
+GO
+USE [DormManageDB]
+GO
+CREATE TABLE [dbo].[Bunk](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[BunkNo] [nvarchar](50) NULL,
+	[DormitoryId] [int] NULL,
+	[IsEnable] [bit] NULL,
+ CONSTRAINT [PK_BUNK] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+CREATE TABLE [dbo].[Department](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[StairName] [nvarchar](50) NULL,
+	[IsEnable] [bit] NULL,
+ CONSTRAINT [PK_DEPARTMENT] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Dormitory]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[Dormitory](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[DormitoryNo] [nvarchar](50) NULL,
+	[DormitoryType] [char](1) NULL CONSTRAINT [DF_Dormitory_DormitoryType]  DEFAULT ((1)),
+	[IsEnable] [bit] NULL,
+ CONSTRAINT [PK_DORMITORY] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[DormitoryDetail]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[DormitoryDetail](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[DormitoryNum] [nvarchar](50) NOT NULL,
+	[Bed1] [nvarchar](50) NULL,
+	[Bed2] [nvarchar](50) NULL,
+	[Bed3] [nvarchar](50) NULL,
+	[Bed4] [nvarchar](50) NULL,
+	[Bed5] [nvarchar](50) NULL,
+	[Bed6] [nvarchar](50) NULL,
+	[Bed7] [nvarchar](50) NULL,
+	[Bed8] [nvarchar](50) NULL,
+	[Bed9] [nvarchar](50) NULL,
+	[Bed10] [nvarchar](50) NULL,
+	[TotalPerson] [int] NULL CONSTRAINT [DF_DormitoryDetail_TotalPerson]  DEFAULT ((0)),
+	[WeekCheckIn] [int] NULL CONSTRAINT [DF_DormitoryDetail_WeekCheckIn]  DEFAULT ((0)),
+	[WeekCheckOut] [int] NULL CONSTRAINT [DF_DormitoryDetail_WeekCheckOut]  DEFAULT ((0)),
+	[DormitoryManager] [nchar](15) NULL,
+	[FreeBedNum] [int] NULL CONSTRAINT [DF_DormitoryDetail_FreeBedNum]  DEFAULT ((0)),
+	[FlagManAndWoMen] [char](1) NULL,
+ CONSTRAINT [PK_DormitoryDetail] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Fine]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Fine](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[StaffId] [int] NULL,
+	[Matter] [nvarchar](100) NULL,
+	[Pursuant] [nvarchar](100) NULL,
+	[Money] [int] NULL,
+	[AddTime] [date] NULL,
+	[Remark] [nvarchar](100) NULL,
+ CONSTRAINT [PK_FINE] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Matter]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Matter](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MatterName] [nvarchar](50) NULL,
+	[TypeId] [int] NULL,
+ CONSTRAINT [PK_MATTER] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Pursuant]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Pursuant](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[PursuantName] [nvarchar](50) NULL,
+	[TypeId] [int] NULL,
+ CONSTRAINT [PK_PURSUANT] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Reward]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Reward](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[StaffId] [int] NULL,
+	[Matter] [nvarchar](100) NULL,
+	[Pursuant] [nvarchar](100) NULL,
+	[Money] [int] NULL,
+	[AddTime] [date] NULL,
+	[Remark] [nvarchar](100) NULL,
+ CONSTRAINT [PK_REWARD] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Staff]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Staff](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NULL,
+	[Sex] [bit] NULL,
+	[TypeId] [bit] NULL,
+	[EmpNo] [nvarchar](50) NULL,
+	[DepartmentId] [int] NULL,
+	[StationId] [int] NULL,
+	[IDCard] [bit] NULL,
+	[Mobile] [nvarchar](50) NULL,
+	[EmergencyName] [nvarchar](50) NULL,
+	[EmergencyMobile] [nvarchar](50) NULL,
+	[EntryTime] [date] NULL,
+	[IsResidence] [int] NULL,
+	[IsEnable] [bit] NULL,
+ CONSTRAINT [PK_STAFF] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[StaffCheckIn]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[StaffCheckIn](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[StaffId] [int] NULL,
+	[Money] [int] NULL,
+	[Treaty] [bit] NULL,
+	[Access] [bit] NULL,
+	[TowerParent] [bit] NULL,
+	[DormParent] [bit] NULL,
+	[CheckInTime] [date] NULL,
+	[DormitoryId] [int] NULL,
+	[BunkId] [int] NULL,
+	[IsEnable] [bit] NULL,
+ CONSTRAINT [PK_STAFFCHECKIN] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[StaffStayOut]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[StaffStayOut](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[StaffId] [int] NULL,
+	[CheckInId] [int] NULL,
+	[StayOutTime] [date] NULL,
+	[Deduction] [int] NULL,
+ CONSTRAINT [PK_STAFFSTAYOUT] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Station]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Station](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[SecondName] [nvarchar](50) NULL,
+	[ParentId] [int] NULL,
+	[IsEnable] [bit] NULL,
+ CONSTRAINT [PK_STATION] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[User]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[User](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NULL,
+	[Account] [nvarchar](50) NULL,
+	[PassWord] [nvarchar](50) NULL,
+	[AddTime] [datetime] NULL,
+	[Role] [bit] NULL,
+ CONSTRAINT [PK_USER] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET IDENTITY_INSERT [dbo].[Bunk] ON 
+
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (1, N'1', 1, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (2, N'2', 1, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (3, N'3', 1, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (4, N'4', 1, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (5, N'5', 1, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (6, N'6', 1, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (7, N'7', 1, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (8, N'8', 1, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (9, N'9', 1, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (10, N'10', 1, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (11, N'1', 2, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (12, N'2', 2, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (13, N'3', 2, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (14, N'4', 2, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (15, N'5', 2, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (16, N'6', 2, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (17, N'7', 2, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (18, N'8', 2, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (19, N'9', 2, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (20, N'10', 2, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (21, N'1', 3, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (22, N'2', 3, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (23, N'3', 3, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (24, N'4', 3, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (25, N'5', 3, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (26, N'6', 3, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (27, N'7', 3, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (28, N'8', 3, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (29, N'9', 3, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (30, N'10', 3, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (31, N'1', 4, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (32, N'2', 4, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (33, N'3', 4, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (34, N'4', 4, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (35, N'5', 4, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (36, N'6', 4, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (37, N'7', 4, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (38, N'8', 4, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (39, N'9', 4, 1)
+GO
+INSERT [dbo].[Bunk] ([Id], [BunkNo], [DormitoryId], [IsEnable]) VALUES (40, N'10', 4, 1)
+GO
+SET IDENTITY_INSERT [dbo].[Bunk] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Department] ON 
+
+GO
+INSERT [dbo].[Department] ([Id], [StairName], [IsEnable]) VALUES (1, N'供应链中心', 1)
+GO
+INSERT [dbo].[Department] ([Id], [StairName], [IsEnable]) VALUES (2, N'财务部', 1)
+GO
+INSERT [dbo].[Department] ([Id], [StairName], [IsEnable]) VALUES (3, N'行政部', 1)
+GO
+INSERT [dbo].[Department] ([Id], [StairName], [IsEnable]) VALUES (4, N'销售部', 1)
+GO
+INSERT [dbo].[Department] ([Id], [StairName], [IsEnable]) VALUES (5, N'开发部', 1)
+GO
+INSERT [dbo].[Department] ([Id], [StairName], [IsEnable]) VALUES (6, N'测试部', 1)
+GO
+INSERT [dbo].[Department] ([Id], [StairName], [IsEnable]) VALUES (7, N'采购部', 1)
+GO
+SET IDENTITY_INSERT [dbo].[Department] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Dormitory] ON 
+
+GO
+INSERT [dbo].[Dormitory] ([Id], [DormitoryNo], [DormitoryType], [IsEnable]) VALUES (1, N'5201', N'1', 1)
+GO
+INSERT [dbo].[Dormitory] ([Id], [DormitoryNo], [DormitoryType], [IsEnable]) VALUES (2, N'5202', N'1', 1)
+GO
+INSERT [dbo].[Dormitory] ([Id], [DormitoryNo], [DormitoryType], [IsEnable]) VALUES (3, N'6503', N'0', 0)
+GO
+INSERT [dbo].[Dormitory] ([Id], [DormitoryNo], [DormitoryType], [IsEnable]) VALUES (4, N'6204', N'0', 0)
+GO
+SET IDENTITY_INSERT [dbo].[Dormitory] OFF
+GO
+SET IDENTITY_INSERT [dbo].[DormitoryDetail] ON 
+
+GO
+INSERT [dbo].[DormitoryDetail] ([Id], [DormitoryNum], [Bed1], [Bed2], [Bed3], [Bed4], [Bed5], [Bed6], [Bed7], [Bed8], [Bed9], [Bed10], [TotalPerson], [WeekCheckIn], [WeekCheckOut], [DormitoryManager], [FreeBedNum], [FlagManAndWoMen]) VALUES (1, N'5201', N'张三/2021-05-25', N'李四/2021-05-31', N'郭庆龙/2021-01-28', N'熊向东/2021-01-28', NULL, NULL, NULL, NULL, NULL, NULL, 4, 1, 0, N'李四             ', 4, N'1')
+GO
+INSERT [dbo].[DormitoryDetail] ([Id], [DormitoryNum], [Bed1], [Bed2], [Bed3], [Bed4], [Bed5], [Bed6], [Bed7], [Bed8], [Bed9], [Bed10], [TotalPerson], [WeekCheckIn], [WeekCheckOut], [DormitoryManager], [FreeBedNum], [FlagManAndWoMen]) VALUES (2, N'5202', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, 8, N'1')
+GO
+INSERT [dbo].[DormitoryDetail] ([Id], [DormitoryNum], [Bed1], [Bed2], [Bed3], [Bed4], [Bed5], [Bed6], [Bed7], [Bed8], [Bed9], [Bed10], [TotalPerson], [WeekCheckIn], [WeekCheckOut], [DormitoryManager], [FreeBedNum], [FlagManAndWoMen]) VALUES (3, N'6503', N'王五/2021-06-28', N'李静/2021-07-28', N'刘芳/2021-08-28', N'王哈哈/2021-05-28', NULL, NULL, NULL, NULL, NULL, NULL, 4, 0, 0, N'李静             ', 4, N'0')
+GO
+INSERT [dbo].[DormitoryDetail] ([Id], [DormitoryNum], [Bed1], [Bed2], [Bed3], [Bed4], [Bed5], [Bed6], [Bed7], [Bed8], [Bed9], [Bed10], [TotalPerson], [WeekCheckIn], [WeekCheckOut], [DormitoryManager], [FreeBedNum], [FlagManAndWoMen]) VALUES (4, N'6204', NULL, NULL, NULL, N'李玲/2021-03-28', N'刘默/2021-02-28', NULL, NULL, NULL, NULL, NULL, 2, 0, 0, N'刘默             ', 6, N'0')
+GO
+SET IDENTITY_INSERT [dbo].[DormitoryDetail] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Fine] ON 
+
+GO
+INSERT [dbo].[Fine] ([Id], [StaffId], [Matter], [Pursuant], [Money], [AddTime], [Remark]) VALUES (1, 1, N'1', N'1', 100, CAST(N'2020-11-12' AS Date), N'没有')
+GO
+INSERT [dbo].[Fine] ([Id], [StaffId], [Matter], [Pursuant], [Money], [AddTime], [Remark]) VALUES (2, 2, N'2', N'2', 200, CAST(N'2000-03-05' AS Date), N'没有')
+GO
+INSERT [dbo].[Fine] ([Id], [StaffId], [Matter], [Pursuant], [Money], [AddTime], [Remark]) VALUES (3, 2, N'抽烟1', N'抽烟1', 200, CAST(N'2021-05-28' AS Date), N'不学好1')
+GO
+SET IDENTITY_INSERT [dbo].[Fine] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Matter] ON 
+
+GO
+INSERT [dbo].[Matter] ([Id], [MatterName], [TypeId]) VALUES (1, N'宿舍卫生干净', 1)
+GO
+SET IDENTITY_INSERT [dbo].[Matter] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Reward] ON 
+
+GO
+INSERT [dbo].[Reward] ([Id], [StaffId], [Matter], [Pursuant], [Money], [AddTime], [Remark]) VALUES (1, 1, N'很好1', N'很好', 200, CAST(N'2021-05-27' AS Date), N'不错')
+GO
+INSERT [dbo].[Reward] ([Id], [StaffId], [Matter], [Pursuant], [Money], [AddTime], [Remark]) VALUES (2, 14, N'拾金不昧1', N'很好1', 100, CAST(N'2021-05-28' AS Date), N'不错1')
+GO
+SET IDENTITY_INSERT [dbo].[Reward] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Staff] ON 
+
+GO
+INSERT [dbo].[Staff] ([Id], [Name], [Sex], [TypeId], [EmpNo], [DepartmentId], [StationId], [IDCard], [Mobile], [EmergencyName], [EmergencyMobile], [EntryTime], [IsResidence], [IsEnable]) VALUES (1, N'张三', 1, 1, N'2059638574', 1, 1, 1, N'15898685748', N'王五', N'18598763587', CAST(N'2021-09-03' AS Date), 2, 1)
+GO
+INSERT [dbo].[Staff] ([Id], [Name], [Sex], [TypeId], [EmpNo], [DepartmentId], [StationId], [IDCard], [Mobile], [EmergencyName], [EmergencyMobile], [EntryTime], [IsResidence], [IsEnable]) VALUES (2, N'李四', 1, 1, N'2058968744', 2, 2, 1, N'13569835847', N'刘三', N'15898685478', CAST(N'2021-03-09' AS Date), 1, 1)
+GO
+INSERT [dbo].[Staff] ([Id], [Name], [Sex], [TypeId], [EmpNo], [DepartmentId], [StationId], [IDCard], [Mobile], [EmergencyName], [EmergencyMobile], [EntryTime], [IsResidence], [IsEnable]) VALUES (4, N'王五', 0, 1, N'8520', 2, 2, 1, N'110', N'王五', N'110', CAST(N'2021-05-26' AS Date), 1, 1)
+GO
+INSERT [dbo].[Staff] ([Id], [Name], [Sex], [TypeId], [EmpNo], [DepartmentId], [StationId], [IDCard], [Mobile], [EmergencyName], [EmergencyMobile], [EntryTime], [IsResidence], [IsEnable]) VALUES (5, N'李静', 0, 1, N'8520', 3, 3, 1, N'110', N'王五', N'110', CAST(N'2021-05-04' AS Date), 1, 1)
+GO
+INSERT [dbo].[Staff] ([Id], [Name], [Sex], [TypeId], [EmpNo], [DepartmentId], [StationId], [IDCard], [Mobile], [EmergencyName], [EmergencyMobile], [EntryTime], [IsResidence], [IsEnable]) VALUES (6, N'刘芳', 0, 0, N'66666', 1, 1, 0, N'110666', N'老六', N'110666', CAST(N'2021-05-12' AS Date), 2, 1)
+GO
+INSERT [dbo].[Staff] ([Id], [Name], [Sex], [TypeId], [EmpNo], [DepartmentId], [StationId], [IDCard], [Mobile], [EmergencyName], [EmergencyMobile], [EntryTime], [IsResidence], [IsEnable]) VALUES (7, N'王哈哈', 0, 1, N'777', 1, 1, 1, N'777', N'老七', N'777', CAST(N'2021-05-26' AS Date), 1, 1)
+GO
+INSERT [dbo].[Staff] ([Id], [Name], [Sex], [TypeId], [EmpNo], [DepartmentId], [StationId], [IDCard], [Mobile], [EmergencyName], [EmergencyMobile], [EntryTime], [IsResidence], [IsEnable]) VALUES (9, N'李玲', 0, 1, N'85', 1, 1, 1, N'852', N'七七七七', N'852', CAST(N'2021-05-26' AS Date), 1, 1)
+GO
+INSERT [dbo].[Staff] ([Id], [Name], [Sex], [TypeId], [EmpNo], [DepartmentId], [StationId], [IDCard], [Mobile], [EmergencyName], [EmergencyMobile], [EntryTime], [IsResidence], [IsEnable]) VALUES (10, N'刘默', 0, 1, N'741', 1, 1, 1, N'852', N'七七七七', N'78542', CAST(N'2021-05-26' AS Date), 1, 1)
+GO
+INSERT [dbo].[Staff] ([Id], [Name], [Sex], [TypeId], [EmpNo], [DepartmentId], [StationId], [IDCard], [Mobile], [EmergencyName], [EmergencyMobile], [EntryTime], [IsResidence], [IsEnable]) VALUES (13, N'郭庆龙', 1, 1, N'2584977545', 1, 1, 1, N'13213529898', N'王保宁', N'13215895864', CAST(N'2021-05-26' AS Date), 1, 0)
+GO
+INSERT [dbo].[Staff] ([Id], [Name], [Sex], [TypeId], [EmpNo], [DepartmentId], [StationId], [IDCard], [Mobile], [EmergencyName], [EmergencyMobile], [EntryTime], [IsResidence], [IsEnable]) VALUES (14, N'熊向东', 1, 1, N'001', 1, 1, 1, N'13633448888', N'王五', N'13633449999', CAST(N'2021-05-27' AS Date), 1, 1)
+GO
+SET IDENTITY_INSERT [dbo].[Staff] OFF
+GO
+SET IDENTITY_INSERT [dbo].[StaffCheckIn] ON 
+
+GO
+INSERT [dbo].[StaffCheckIn] ([Id], [StaffId], [Money], [Treaty], [Access], [TowerParent], [DormParent], [CheckInTime], [DormitoryId], [BunkId], [IsEnable]) VALUES (4, 1, 200, 1, 0, 1, 0, CAST(N'2021-05-25' AS Date), 1, 1, 1)
+GO
+INSERT [dbo].[StaffCheckIn] ([Id], [StaffId], [Money], [Treaty], [Access], [TowerParent], [DormParent], [CheckInTime], [DormitoryId], [BunkId], [IsEnable]) VALUES (5, 2, 100, 1, 1, 0, 1, CAST(N'2021-05-31' AS Date), 1, 2, 1)
+GO
+INSERT [dbo].[StaffCheckIn] ([Id], [StaffId], [Money], [Treaty], [Access], [TowerParent], [DormParent], [CheckInTime], [DormitoryId], [BunkId], [IsEnable]) VALUES (6, 4, 0, 1, 1, 0, 0, CAST(N'2021-06-28' AS Date), 3, 1, 1)
+GO
+INSERT [dbo].[StaffCheckIn] ([Id], [StaffId], [Money], [Treaty], [Access], [TowerParent], [DormParent], [CheckInTime], [DormitoryId], [BunkId], [IsEnable]) VALUES (7, 5, 100, 1, 1, 0, 1, CAST(N'2021-07-28' AS Date), 3, 2, 1)
+GO
+INSERT [dbo].[StaffCheckIn] ([Id], [StaffId], [Money], [Treaty], [Access], [TowerParent], [DormParent], [CheckInTime], [DormitoryId], [BunkId], [IsEnable]) VALUES (8, 6, 100, 1, 1, 0, 0, CAST(N'2021-08-28' AS Date), 3, 3, 1)
+GO
+INSERT [dbo].[StaffCheckIn] ([Id], [StaffId], [Money], [Treaty], [Access], [TowerParent], [DormParent], [CheckInTime], [DormitoryId], [BunkId], [IsEnable]) VALUES (9, 7, 100, 1, 1, 0, 0, CAST(N'2021-05-28' AS Date), 3, 4, 1)
+GO
+INSERT [dbo].[StaffCheckIn] ([Id], [StaffId], [Money], [Treaty], [Access], [TowerParent], [DormParent], [CheckInTime], [DormitoryId], [BunkId], [IsEnable]) VALUES (10, 9, 100, 1, 1, 1, 0, CAST(N'2021-03-28' AS Date), 4, 4, 1)
+GO
+INSERT [dbo].[StaffCheckIn] ([Id], [StaffId], [Money], [Treaty], [Access], [TowerParent], [DormParent], [CheckInTime], [DormitoryId], [BunkId], [IsEnable]) VALUES (11, 10, 100, 1, 1, 1, 1, CAST(N'2021-02-28' AS Date), 4, 5, 1)
+GO
+INSERT [dbo].[StaffCheckIn] ([Id], [StaffId], [Money], [Treaty], [Access], [TowerParent], [DormParent], [CheckInTime], [DormitoryId], [BunkId], [IsEnable]) VALUES (12, 13, 100, 1, 1, 0, 0, CAST(N'2021-01-28' AS Date), 1, 3, 1)
+GO
+INSERT [dbo].[StaffCheckIn] ([Id], [StaffId], [Money], [Treaty], [Access], [TowerParent], [DormParent], [CheckInTime], [DormitoryId], [BunkId], [IsEnable]) VALUES (13, 14, 100, 1, 1, 0, 0, CAST(N'2021-01-28' AS Date), 1, 4, 1)
+GO
+SET IDENTITY_INSERT [dbo].[StaffCheckIn] OFF
+GO
+SET IDENTITY_INSERT [dbo].[StaffStayOut] ON 
+
+GO
+INSERT [dbo].[StaffStayOut] ([Id], [StaffId], [CheckInId], [StayOutTime], [Deduction]) VALUES (17, 1, 4, CAST(N'2021-04-07' AS Date), 20)
+GO
+INSERT [dbo].[StaffStayOut] ([Id], [StaffId], [CheckInId], [StayOutTime], [Deduction]) VALUES (18, 2, 5, CAST(N'2021-05-26' AS Date), 371)
+GO
+INSERT [dbo].[StaffStayOut] ([Id], [StaffId], [CheckInId], [StayOutTime], [Deduction]) VALUES (19, 4, 6, CAST(N'2021-05-01' AS Date), 101)
+GO
+SET IDENTITY_INSERT [dbo].[StaffStayOut] OFF
+GO
+SET IDENTITY_INSERT [dbo].[Station] ON 
+
+GO
+INSERT [dbo].[Station] ([Id], [SecondName], [ParentId], [IsEnable]) VALUES (1, N'工艺', 1, 1)
+GO
+INSERT [dbo].[Station] ([Id], [SecondName], [ParentId], [IsEnable]) VALUES (2, N'印刷厂', 2, 1)
+GO
+INSERT [dbo].[Station] ([Id], [SecondName], [ParentId], [IsEnable]) VALUES (3, N'财务中心', 3, 1)
+GO
+SET IDENTITY_INSERT [dbo].[Station] OFF
+GO
+SET IDENTITY_INSERT [dbo].[User] ON 
+
+GO
+INSERT [dbo].[User] ([Id], [Name], [Account], [PassWord], [AddTime], [Role]) VALUES (1, N'管理员', N'admin', N'123456', CAST(N'2021-05-24 00:00:00.000' AS DateTime), 1)
+GO
+INSERT [dbo].[User] ([Id], [Name], [Account], [PassWord], [AddTime], [Role]) VALUES (2, N'熊向东', N'xxd', N'123456', CAST(N'2021-05-24 00:00:00.000' AS DateTime), 0)
+GO
+SET IDENTITY_INSERT [dbo].[User] OFF
+GO
+/****** Object:  StoredProcedure [dbo].[p_queryroomandbed]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+/**
+* 名称：查询房间、住宿明细
+* 功能：每月查询房间、住宿明细，及男女住宿明细
+* 作者：郭兵兵
+* 日期：2021-05-28
+* 语法：  exec  [p_queryroomandbed]
+*/
+CREATE proc [dbo].[p_queryroomandbed]
+as
+begin
+	
+	--删除前次统计的宿舍明细数据
+	truncate table DormitoryDetail
+
+	declare @tmpDormitoryNo nvarchar(50)
+	declare @tmpDormitoryType char(1)
+
+	declare cursor_dormitorydetail cursor for
+		 select DormitoryNo,DormitoryType from Dormitory
+	open cursor_dormitorydetail
+	fetch next from cursor_dormitorydetail into @tmpDormitoryNo,@tmpDormitoryType
+	while (@@FETCH_STATUS=0)
+		begin
+
+			-- 男女宿舍标识
+			declare @flagManAndWoMen char(1)
+			set @flagManAndWoMen=Null;
+			select @flagManAndWoMen=[DormitoryType] from Dormitory
+			where DormitoryNo=@tmpDormitoryNo 
+			
+			-- 1号床位住宿人员姓名
+			declare @tmpUserName1 varchar(50)
+			set @tmpUserName1 = Null;
+			select @tmpUserName1 = (t2.Name+'/'+ convert(nvarchar(20), t1.CheckInTime)) from StaffCheckIn t1 
+			join Staff  t2 on t1.StaffId=t2.Id 
+			join Dormitory t3 on t1.DormitoryId = t3.id
+			join [dbo].[Bunk] t4 on t1.BunkId=t4.id
+			where t1.isEnable=1 
+			and t4.BunkNo =1 
+			and t3.DormitoryNo = @tmpDormitoryNo 
+
+			-- 2号床位住宿人员姓名
+			declare @tmpUserName2 varchar(50)
+			set @tmpUserName2 = Null;
+			select @tmpUserName2 = (t2.Name+'/'+ convert(nvarchar(20), t1.CheckInTime)) from StaffCheckIn t1 
+			join Staff  t2 on t1.StaffId=t2.Id 
+			join Dormitory t3 on t1.DormitoryId = t3.id
+			join [dbo].[Bunk] t4 on t1.BunkId=t4.id
+			where t1.isEnable=1 
+			and t4.BunkNo =2 
+			and t3.DormitoryNo = @tmpDormitoryNo 
+
+			-- 3号床位住宿人员姓名
+			declare @tmpUserName3 varchar(50)
+			set @tmpUserName3 = Null;
+			select @tmpUserName3 = (t2.Name+'/'+ convert(nvarchar(20), t1.CheckInTime)) from StaffCheckIn t1 
+			join Staff  t2 on t1.StaffId=t2.Id 
+			join Dormitory t3 on t1.DormitoryId = t3.id
+			join [dbo].[Bunk] t4 on t1.BunkId=t4.id
+			where t1.isEnable=1 
+			and t4.BunkNo = 3 
+			and t3.DormitoryNo = @tmpDormitoryNo 
+
+			-- 4号床位住宿人员姓名
+			declare @tmpUserName4 varchar(50)
+			set @tmpUserName4 = Null;
+			select @tmpUserName4 = (t2.Name+'/'+ convert(nvarchar(20), t1.CheckInTime)) from StaffCheckIn t1 
+			join Staff  t2 on t1.StaffId=t2.Id 
+			join Dormitory t3 on t1.DormitoryId = t3.id
+			join [dbo].[Bunk] t4 on t1.BunkId=t4.id
+			where t1.isEnable=1 
+			and t4.BunkNo = 4 
+			and t3.DormitoryNo = @tmpDormitoryNo 
+
+			-- 5号床位住宿人员姓名
+			declare @tmpUserName5 varchar(50)
+			set @tmpUserName5 = Null;
+			select @tmpUserName5 = (t2.Name+'/'+ convert(nvarchar(20), t1.CheckInTime)) from StaffCheckIn t1 
+			join Staff  t2 on t1.StaffId=t2.Id 
+			join Dormitory t3 on t1.DormitoryId = t3.id
+			join [dbo].[Bunk] t4 on t1.BunkId=t4.id
+			where t1.isEnable=1 
+			and t4.BunkNo = 5 
+			and t3.DormitoryNo = @tmpDormitoryNo 
+
+			-- 6号床位住宿人员姓名
+			declare @tmpUserName6 varchar(50)
+			set @tmpUserName6 = Null;
+			select @tmpUserName6 = (t2.Name+'/'+ convert(nvarchar(20), t1.CheckInTime)) from StaffCheckIn t1 
+			join Staff  t2 on t1.StaffId=t2.Id 
+			join Dormitory t3 on t1.DormitoryId = t3.id
+			join [dbo].[Bunk] t4 on t1.BunkId=t4.id
+			where t1.isEnable=1 
+			and t4.BunkNo = 6 
+			and t3.DormitoryNo = @tmpDormitoryNo 
+
+			-- 7号床位住宿人员姓名
+			declare @tmpUserName7 varchar(50)
+			set @tmpUserName7 = Null;
+			select @tmpUserName7 = (t2.Name+'/'+ convert(nvarchar(20), t1.CheckInTime)) from StaffCheckIn t1 
+			join Staff  t2 on t1.StaffId=t2.Id 
+			join Dormitory t3 on t1.DormitoryId = t3.id
+			join [dbo].[Bunk] t4 on t1.BunkId=t4.id
+			where t1.isEnable=1 
+			and t4.BunkNo = 7 
+			and t3.DormitoryNo = @tmpDormitoryNo 
+
+			-- 8号床位住宿人员姓名
+			declare @tmpUserName8 varchar(50)
+			set @tmpUserName8 = Null;
+			select @tmpUserName8 = (t2.Name+'/'+ convert(nvarchar(20), t1.CheckInTime)) from StaffCheckIn t1 
+			join Staff  t2 on t1.StaffId=t2.Id 
+			join Dormitory t3 on t1.DormitoryId = t3.id
+			join [dbo].[Bunk] t4 on t1.BunkId=t4.id
+			where t1.isEnable=1 
+			and t4.BunkNo = 8 
+			and t3.DormitoryNo = @tmpDormitoryNo 
+
+			-- 9号床位住宿人员姓名
+			declare @tmpUserName9 varchar(50)
+			set @tmpUserName9 = Null;
+			select @tmpUserName9 = (t2.Name+'/'+ convert(nvarchar(20), t1.CheckInTime)) from StaffCheckIn t1 
+			join Staff  t2 on t1.StaffId=t2.Id 
+			join Dormitory t3 on t1.DormitoryId = t3.id
+			join [dbo].[Bunk] t4 on t1.BunkId=t4.id
+			where t1.isEnable=1 
+			and t4.BunkNo = 9 
+			and t3.DormitoryNo = @tmpDormitoryNo 
+
+			-- 10号床位住宿人员姓名
+			declare @tmpUserName10 varchar(50)
+			set @tmpUserName10 = Null;
+			select @tmpUserName10 = (t2.Name+'/'+ convert(nvarchar(20), t1.CheckInTime)) from StaffCheckIn t1 
+			join Staff  t2 on t1.StaffId=t2.Id 
+			join Dormitory t3 on t1.DormitoryId = t3.id
+			join [dbo].[Bunk] t4 on t1.BunkId=t4.id
+			where t1.isEnable=1 
+			and t4.BunkNo = 10 
+			and t3.DormitoryNo = @tmpDormitoryNo 
+
+			-- 房间总人数
+			declare @tmproomcount varchar(50)
+			set @tmproomcount = Null;
+			select @tmproomcount = count(1) from StaffCheckIn t1 
+			join Dormitory t2 on t1.DormitoryId = t2.id			
+			where t1.isEnable=1 
+			and t2.DormitoryNo = @tmpDormitoryNo 
+
+			-- 本周入住人数
+			declare @tmpweekcheckinnum varchar(50)
+			set @tmpweekcheckinnum = Null;
+			select @tmpweekcheckinnum = count(1) from StaffCheckIn t1 
+			join Dormitory t2 on t1.DormitoryId = t2.id
+			where t1.isEnable=1 
+			and t2.DormitoryNo = @tmpDormitoryNo 
+			and t1.CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 0), 121) 
+			and t1.CheckInTime <= (SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 6), 121)) 
+
+			-- 本周退宿人数
+			declare @tmpweekcheckoutnum varchar(50)
+			set @tmpweekcheckoutnum = Null;
+			select @tmpweekcheckoutnum = count(1) from StaffStayOut t1 
+			join StaffCheckIn t2 on t1.CheckInId = t2.Id 
+			join Dormitory t3 on t2.DormitoryId = t3.id
+			where t2.isEnable=0 
+			and t3.DormitoryNo = @tmpDormitoryNo 
+			and t1.StayOutTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 0), 121) 
+			and t1.StayOutTime <= (SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 6), 121)) 
+	
+			-- 宿舍长
+			declare @tmpDormParentName varchar(50)
+			set @tmpDormParentName = Null;
+			select @tmpDormParentName = t2.Name from StaffCheckIn t1 
+			join Staff t2 on t1.StaffId = t2.Id
+			join Dormitory t3 on t1.DormitoryId = t3.id
+			where t1.DormParent=1 and t1.IsEnable=1
+			and t3.DormitoryNo = @tmpDormitoryNo 
+		
+			-- 空余床位
+			declare @tmpNullBedCount varchar(50)
+			select @tmpNullBedCount = (8-@tmproomcount) 
+			
+			insert into  DormitoryDetail
+			(DormitoryNum,Bed1,Bed2,Bed3,Bed4,Bed5,Bed6,Bed7,Bed8,Bed9,Bed10,TotalPerson,WeekCheckIn,WeekCheckOut,DormitoryManager,FreeBedNum,FlagManAndWoMen)
+			values			(@tmpDormitoryNo,@tmpUserName1,@tmpUserName2,@tmpUserName3,@tmpUserName4,@tmpUserName5,@tmpUserName6,@tmpUserName7,@tmpUserName8,@tmpUserName9,@tmpUserName10,@tmproomcount,@tmpweekcheckinnum,@tmpweekcheckoutnum,@tmpDormParentName,@tmpNullBedCount,@flagManAndWoMen)
+
+			fetch next from cursor_dormitorydetail into @tmpDormitoryNo,@tmpDormitoryType
+		end
+	close cursor_dormitorydetail
+	deallocate cursor_dormitorydetail
+
+	--查询宿舍明细
+	 select * from DormitoryDetail
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[p_TotalBormitory]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create proc [dbo].[p_TotalBormitory]
+as 
+begin
+	select '男生入住(8/房间)' as 宿舍统计
+	,(select count(1) from Dormitory where DormitoryType='1') as 总床位数
+	,(select count(1) from StaffCheckIn t1 join  Dormitory t2 on t1.DormitoryId=t2.Id where t2.DormitoryType='1')-(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId=StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId=Dormitory.Id where Dormitory.DormitoryType='1') as '总入住人数(人)',
+	((select count(1) from Staff where Sex='1')- (select count(1) from StaffCheckIn t1 join  Dormitory t2 on t1.DormitoryId=t2.Id where t2.DormitoryType='1'))+(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId=StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId=Dormitory.Id where Dormitory.DormitoryType='1') as 剩余人数
+	,(select count(1) from StaffCheckIn t1 join  Dormitory t2 on t1.DormitoryId=t2.Id where t2.DormitoryType='1' 
+	and CheckInTime <=( SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 6),121)) 
+	and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 0),121))  本周入住人数
+	,(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId=StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId=Dormitory.Id where Dormitory.DormitoryType='1' and CheckInTime <=( SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 6),121)) 
+	and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 0),121)) 退宿
+
+	union all
+
+	select '女生入住(8/房间)' as 宿舍统计
+	,(select count(1) from Dormitory where DormitoryType='0') as 总床位数
+	,(select count(1) from StaffCheckIn t1 join  Dormitory t2 on t1.DormitoryId=t2.Id where t2.DormitoryType='0')-(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId=StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId=Dormitory.Id where Dormitory.DormitoryType='0') as '总入住人数(人)',
+	((select count(1) from Staff where Sex='0')- (select count(1) from StaffCheckIn t1 join  Dormitory t2 on t1.DormitoryId=t2.Id where t2.DormitoryType='0'))+(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId=StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId=Dormitory.Id where Dormitory.DormitoryType='0') as 剩余人数
+	,(select count(1) from StaffCheckIn t1 join  Dormitory t2 on t1.DormitoryId=t2.Id where t2.DormitoryType='0' 
+	and CheckInTime <=( SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 6),121)) 
+	and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 0),121))  本周入住人数
+	,(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId=StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId=Dormitory.Id where Dormitory.DormitoryType='0' and CheckInTime <=( SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 6),121)) 
+	and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 0),121))
+	退宿
+
+
+	union all
+
+	select '合计人数(人)' as 宿舍统计
+	,(select count(1) from Dormitory ) as 总床位数
+	,(select count(1) from StaffCheckIn t1 join  Dormitory t2 on t1.DormitoryId=t2.Id )-(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId=StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId=Dormitory.Id ) as '总入住人数(人)',
+	((select count(1) from Staff )- (select count(1) from StaffCheckIn t1 join  Dormitory t2 on t1.DormitoryId=t2.Id))+(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId=StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId=Dormitory.Id ) as 剩余人数
+	,(select count(1) from StaffCheckIn t1 join  Dormitory t2 on t1.DormitoryId=t2.Id 
+	and CheckInTime <=( SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 6),121)) 
+	and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 0),121))  本周入住人数
+	,(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId=StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId=Dormitory.Id 
+	and CheckInTime <=( SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 6),121)) 
+	and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk,0,DATEADD(dd, -1, getdate()) ), 0),121))
+	退宿
+end
+GO
+/****** Object:  StoredProcedure [dbo].[p_TotalBormitorys]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+create proc [dbo].[p_TotalBormitorys]
+as 
+begin
+	select '男生入住(8/房间)' as dormitory  --宿舍
+	,(select count(1) from Bunk join  Dormitory on Bunk.DormitoryId=Dormitory.Id where DormitoryType='1') bed	--床位
+	,(select count(1) from StaffCheckIn t1 join Dormitory t2 on t1.DormitoryId = t2.Id where t2.DormitoryType = '1')-(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId = StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId = Dormitory.Id where Dormitory.DormitoryType = '1') as Checkin  --入住
+	,	((select count(1) from Staff where Sex = '1')-(select count(1) from StaffCheckIn t1 join Dormitory t2 on t1.DormitoryId = t2.Id where t2.DormitoryType = '1'))+(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId = StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId = Dormitory.Id where Dormitory.DormitoryType = '1') as surplus  --剩余
+	,(select count(1) from StaffCheckIn t1 join Dormitory t2 on t1.DormitoryId = t2.Id where t2.DormitoryType = '1'	and CheckInTime <= (SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 6), 121)) 	and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 0), 121))  weekCheck  --入住
+	,(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId = StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId = Dormitory.Id where Dormitory.DormitoryType = '1' and CheckInTime <= (SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 6), 121)) and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 0), 121)) Stayout --退宿
+
+	union all 
+	
+	select '女生入住(8/房间)' as dormitory --宿舍 
+	,(select count(1) from Bunk join  Dormitory on Bunk.DormitoryId=Dormitory.Id where DormitoryType='0') as bed  --床位
+	,(select count(1) from StaffCheckIn t1 join Dormitory t2 on t1.DormitoryId = t2.Id where t2.DormitoryType = '0')-(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId = StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId = Dormitory.Id where Dormitory.DormitoryType = '0') as Checkin  --入住
+	,((select count(1) from Staff where Sex = '0')-(select count(1) from StaffCheckIn t1 join Dormitory t2 on t1.DormitoryId = t2.Id where t2.DormitoryType = '0'))+(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId = StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId = Dormitory.Id where Dormitory.DormitoryType = '0') as surplus  --剩余
+	,(select count(1) from StaffCheckIn t1 join Dormitory t2 on t1.DormitoryId = t2.Id where t2.DormitoryType = '0'and CheckInTime <= (SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 6), 121)) and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 0), 121))  weekCheck  --入住
+	,(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId = StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId = Dormitory.Id where Dormitory.DormitoryType = '0' and CheckInTime <= (SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 6), 121)) and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 0), 121))Stayout   --退宿
+	
+	union all 
+	
+	select '合计人数(人)' as dormitory --宿舍 
+	,(select count(1) from Bunk join  Dormitory on Bunk.DormitoryId=Dormitory.Id  ) as bed  --床位
+	,(select count(1) from StaffCheckIn t1 join Dormitory t2 on t1.DormitoryId = t2.Id )-(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId = StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId = Dormitory.Id ) as Checkin --入住
+	,((select count(1) from Staff )-(select count(1) from StaffCheckIn t1 join Dormitory t2 on t1.DormitoryId = t2.Id))+(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId = StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId = Dormitory.Id ) as surplus --剩余
+	,(select count(1) from StaffCheckIn t1 join Dormitory t2 on t1.DormitoryId = t2.Id and CheckInTime <= (SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 6), 121)) and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 0), 121))  weekCheck --入住
+	,(select count(1) from StaffStayOut join StaffCheckIn on StaffStayOut.CheckInId = StaffCheckIn.Id join Dormitory on StaffCheckIn.DormitoryId = Dormitory.Id and CheckInTime <= (SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 6), 121)) and CheckInTime >= CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 0), 121))Stayout --退宿
+
+	    select CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 0), 121) ks
+
+	SELECT CONVERT(nvarchar(10), DATEADD(wk, DATEDIFF(wk, 0, DATEADD(dd, -1, getdate())), 6), 121) js
+
+end
+GO
+/****** Object:  StoredProcedure [dbo].[p_totalRoom]    Script Date: 2021/05/31 10:10:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+/**
+* 名称：综合查询页面的汇总信息
+* 功能：统计每月房间总数、床位总数、男女住宿数量
+* 作者：郭兵兵
+* 日期：2021-05-28
+* 语法：  exec  p_totalRoom
+*/
+CREATE proc [dbo].[p_totalRoom]
+as
+begin
+	
+	select 
+	-- 全部入住人数
+	(select count(1) from StaffCheckIn  where IsEnable=1)  as totalperson
+	--入住男生人数
+	, (select count(1) from StaffCheckIn t1 join Staff t2 on t1.StaffId = t2.Id  where t1.IsEnable=1 and t2.sex=1)  as totalman
+	--入住女生人数
+	, (select count(1) from StaffCheckIn t1 join Staff t2 on t1.StaffId = t2.Id  where t1.IsEnable=1 and t2.sex=0 ) as totalwoman
+	,('男生（501-603） 女生（604-617）共32间') as roomnum
+	,('女14间（112）人  男18间（144）') as bednum
+
+end
+GO
+USE [master]
+GO
+ALTER DATABASE [DormManageDB] SET  READ_WRITE 
+GO
