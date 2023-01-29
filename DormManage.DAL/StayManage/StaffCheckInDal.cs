@@ -104,10 +104,10 @@ namespace DormManage.DAL.StayManage
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public StaffCheckInDto GetStaffCheckInById(int id)
+        public StaffStayOutDto GetStaffCheckInById(int id)
         {
-            string cmdText = $"select t1.*,t2.Name,t2.EmpNo,t2.Sex,t2.TypeId,t2.Mobile,t2.EmergencyName,t2.EmergencyMobile,t3.StairName,t4.SecondName,t5.BunkNo from StaffCheckIn t1 join Staff t2 on t1.StaffId=t2.Id join Department t3 on t2.DepartmentId=t3.Id join Station t4 on t2.StationId=t4.Id join Bunk t5 on t1.BunkId=t5.Id where t1.Id={id}";
-            var saffCheckIn = DapperHelper.GetList<StaffCheckInDto>(cmdText).FirstOrDefault();
+            string cmdText = $"select t1.*,t2.Name,t2.EmpNo,t2.Sex,t2.TypeId,t2.Mobile,t2.EmergencyName,t2.EmergencyMobile,t3.StairName,t4.CheckInTime from StaffStayOut t1 join Staff t2\r\non t1.StaffId=t2.Id join Department t3 on t2.DepartmentId=t3.Id join StaffCheckIn t4 on t1.CheckInId=t4.Id    where t1.Id={id}";
+            var saffCheckIn = DapperHelper.GetList<StaffStayOutDto>(cmdText).FirstOrDefault();
             return saffCheckIn;
         }
 
@@ -118,7 +118,7 @@ namespace DormManage.DAL.StayManage
         /// <returns></returns>
         public int Update(StaffCheckIn staff)
         {
-            string cmdText = $"update StaffCheckIn set [Money]='{staff.Money}',Treaty='{staff.Treaty}',Access='{staff.Access}',TowerParent='{staff.TowerParent}',DormParent='{staff.DormParent}',CheckInTime='{staff.CheckInTime}',DormitoryId='{staff.DormitoryId}',BunkId='{staff.BunkId}' where Id={staff.Id}";
+            string cmdText = $"update StaffCheckIn set [Money]='{staff.Money}',Treaty='{staff.Treaty}',Access='{staff.Access}',TowerParent='{staff.TowerParent}',DormParent='{staff.DormParent}',StayOutTime='{staff.CheckInTime}',DormitoryId='{staff.DormitoryId}',BunkId='{staff.BunkId}' where Id={staff.Id}";
             var i = DapperHelper.ExecuteSQL(cmdText);
             return i;
         }

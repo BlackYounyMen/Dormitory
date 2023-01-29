@@ -220,6 +220,12 @@
     <Compile Include="RewardsManage\StayWithholdFrm.Designer.cs">
       <DependentUpon>StayWithholdFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Statistics\LodgingQueryFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Statistics\LodgingQueryFrm.Designer.cs">
+      <DependentUpon>LodgingQueryFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="StayManage\StaffCheckInAddFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,6 +353,9 @@
     <EmbeddedResource Include="RewardsManage\StayWithholdFrm.resx">
       <DependentUpon>StayWithholdFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Statistics\LodgingQueryFrm.resx">
+      <DependentUpon>LodgingQueryFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="StayManage\StaffCheckInAddFrm.resx">
       <DependentUpon>StaffCheckInAddFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -399,6 +408,11 @@
       <Name>DormManage.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\R-C.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\wallhaven-vqmml.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

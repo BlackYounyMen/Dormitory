@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DormManage.UI.BasicsMessage;
 using DormManage.UI.RewardsManage;
-
+using DormManage.UI.Statistics;
 using DormManage.UI.StayManage;
 
 namespace DormManage.UI
@@ -203,6 +203,13 @@ namespace DormManage.UI
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
             System.Environment.Exit(0);
+        }
+
+        private void 住宿查询ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LodgingQueryFrm lodgingQueryFrm = new LodgingQueryFrm();
+            lodgingQueryFrm.Name = "LodgingQueryFrm";
+            OpenChildForm(lodgingQueryFrm);
         }
     }
 }

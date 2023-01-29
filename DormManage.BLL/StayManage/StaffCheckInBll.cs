@@ -10,7 +10,7 @@ using DormManage.Model;
 namespace DormManage.BLL.StayManage
 {
     /// <summary>
-    /// 员工入住 业务逻辑层 - 熊向东
+    /// 员工入住 业务逻辑层 
     /// </summary>
     public class StaffCheckInBll
     {
@@ -81,7 +81,7 @@ namespace DormManage.BLL.StayManage
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public StaffCheckInDto GetStaffCheckInById(int id)
+        public StaffStayOutDto GetStaffCheckInById(int id)
         {
             var saffCheckIn = staffDal.GetStaffCheckInById(id);
             return saffCheckIn;

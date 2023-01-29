@@ -44,43 +44,48 @@ namespace DormManage.UI
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(237, 207);
+            this.label1.Location = new System.Drawing.Point(178, 166);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 15);
+            this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 1;
             this.label1.Text = "账号：";
             // 
             // txtAccount
             // 
-            this.txtAccount.Location = new System.Drawing.Point(296, 196);
+            this.txtAccount.Location = new System.Drawing.Point(222, 157);
+            this.txtAccount.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtAccount.Name = "txtAccount";
-            this.txtAccount.Size = new System.Drawing.Size(167, 25);
+            this.txtAccount.Size = new System.Drawing.Size(126, 21);
             this.txtAccount.TabIndex = 2;
             this.txtAccount.Text = "admin";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(296, 241);
+            this.txtPassword.Location = new System.Drawing.Point(222, 193);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(167, 25);
+            this.txtPassword.Size = new System.Drawing.Size(126, 21);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.Text = "123456";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(237, 252);
+            this.label2.Location = new System.Drawing.Point(178, 202);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 15);
+            this.label2.Size = new System.Drawing.Size(41, 12);
             this.label2.TabIndex = 3;
             this.label2.Text = "密码：";
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(270, 320);
+            this.btnLogin.Location = new System.Drawing.Point(202, 256);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 25);
+            this.btnLogin.Size = new System.Drawing.Size(56, 20);
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "登录";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -88,9 +93,10 @@ namespace DormManage.UI
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(398, 320);
+            this.btnReset.Location = new System.Drawing.Point(298, 256);
+            this.btnReset.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 25);
+            this.btnReset.Size = new System.Drawing.Size(56, 20);
             this.btnReset.TabIndex = 7;
             this.btnReset.Text = "重置";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -99,29 +105,30 @@ namespace DormManage.UI
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(585, 432);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(439, 346);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(202, 15);
+            this.label4.Size = new System.Drawing.Size(161, 12);
             this.label4.TabIndex = 9;
-            this.label4.Text = "欢迎使用：握奇宿舍管理系统";
+            this.label4.Text = "欢迎使用：文奇宿舍管理系统";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = global::DormManage.UI.Properties.Resources.QQ截图20210524164327;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Image = global::DormManage.UI.Properties.Resources.wallhaven_vqmml;
             this.pictureBox1.Location = new System.Drawing.Point(1, 1);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(798, 169);
+            this.pictureBox1.Size = new System.Drawing.Size(599, 357);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // LoginFrm
             // 
             this.AcceptButton = this.btnLogin;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 456);
+            this.ClientSize = new System.Drawing.Size(600, 365);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnLogin);
@@ -132,6 +139,7 @@ namespace DormManage.UI
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.MaximizeBox = false;
             this.Name = "LoginFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -45,6 +45,9 @@ namespace DormManage.UI
             this.奖惩管理ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Reward = new System.Windows.Forms.ToolStripMenuItem();
             this.Fine = new System.Windows.Forms.ToolStripMenuItem();
+            this.统计分析ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.住宿查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.汇总ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,10 +57,12 @@ namespace DormManage.UI
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.基础信息维护ToolStripMenuItem,
             this.住宿管理ToolStripMenuItem,
-            this.奖惩管理ToolStripMenuItem});
+            this.奖惩管理ToolStripMenuItem,
+            this.统计分析ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1127, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(845, 25);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -70,42 +75,41 @@ namespace DormManage.UI
             this.Dormitory,
             this.Bunk});
             this.基础信息维护ToolStripMenuItem.Name = "基础信息维护ToolStripMenuItem";
-            this.基础信息维护ToolStripMenuItem.Size = new System.Drawing.Size(113, 24);
+            this.基础信息维护ToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.基础信息维护ToolStripMenuItem.Text = "基础信息维护";
-         
             // 
             // Department
             // 
             this.Department.Name = "Department";
-            this.Department.Size = new System.Drawing.Size(224, 26);
+            this.Department.Size = new System.Drawing.Size(148, 22);
             this.Department.Text = "一级部门维护";
             this.Department.Click += new System.EventHandler(this.Department_Click);
             // 
             // Station
             // 
             this.Station.Name = "Station";
-            this.Station.Size = new System.Drawing.Size(224, 26);
+            this.Station.Size = new System.Drawing.Size(148, 22);
             this.Station.Text = "二级部门维护";
             this.Station.Click += new System.EventHandler(this.Station_Click);
             // 
             // Staff
             // 
             this.Staff.Name = "Staff";
-            this.Staff.Size = new System.Drawing.Size(224, 26);
+            this.Staff.Size = new System.Drawing.Size(148, 22);
             this.Staff.Text = "员工维护";
             this.Staff.Click += new System.EventHandler(this.Staff_Click);
             // 
             // Dormitory
             // 
             this.Dormitory.Name = "Dormitory";
-            this.Dormitory.Size = new System.Drawing.Size(224, 26);
+            this.Dormitory.Size = new System.Drawing.Size(148, 22);
             this.Dormitory.Text = "宿舍维护";
             this.Dormitory.Click += new System.EventHandler(this.Dormitory_Click);
             // 
             // Bunk
             // 
             this.Bunk.Name = "Bunk";
-            this.Bunk.Size = new System.Drawing.Size(224, 26);
+            this.Bunk.Size = new System.Drawing.Size(148, 22);
             this.Bunk.Text = "床位维护";
             this.Bunk.Click += new System.EventHandler(this.Bunk_Click);
             // 
@@ -117,34 +121,34 @@ namespace DormManage.UI
             this.StaffStayOut,
             this.StayOutWithhold});
             this.住宿管理ToolStripMenuItem.Name = "住宿管理ToolStripMenuItem";
-            this.住宿管理ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.住宿管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.住宿管理ToolStripMenuItem.Text = "住宿管理";
             // 
             // StaffCheckIn
             // 
             this.StaffCheckIn.Name = "StaffCheckIn";
-            this.StaffCheckIn.Size = new System.Drawing.Size(152, 26);
+            this.StaffCheckIn.Size = new System.Drawing.Size(124, 22);
             this.StaffCheckIn.Text = "入住管理";
             this.StaffCheckIn.Click += new System.EventHandler(this.StaffCheckIn_Click);
             // 
             // CheckInWithhold
             // 
             this.CheckInWithhold.Name = "CheckInWithhold";
-            this.CheckInWithhold.Size = new System.Drawing.Size(152, 26);
+            this.CheckInWithhold.Size = new System.Drawing.Size(124, 22);
             this.CheckInWithhold.Text = "住宿扣款";
             this.CheckInWithhold.Click += new System.EventHandler(this.CheckInWithhold_Click);
             // 
             // StaffStayOut
             // 
             this.StaffStayOut.Name = "StaffStayOut";
-            this.StaffStayOut.Size = new System.Drawing.Size(152, 26);
+            this.StaffStayOut.Size = new System.Drawing.Size(124, 22);
             this.StaffStayOut.Text = "退宿管理";
             this.StaffStayOut.Click += new System.EventHandler(this.StaffStayOut_Click);
             // 
             // StayOutWithhold
             // 
             this.StayOutWithhold.Name = "StayOutWithhold";
-            this.StayOutWithhold.Size = new System.Drawing.Size(152, 26);
+            this.StayOutWithhold.Size = new System.Drawing.Size(124, 22);
             this.StayOutWithhold.Text = "退宿扣款";
             this.StayOutWithhold.Click += new System.EventHandler(this.StayOutWithhold_Click);
             // 
@@ -154,32 +158,55 @@ namespace DormManage.UI
             this.Reward,
             this.Fine});
             this.奖惩管理ToolStripMenuItem.Name = "奖惩管理ToolStripMenuItem";
-            this.奖惩管理ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.奖惩管理ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.奖惩管理ToolStripMenuItem.Text = "奖惩管理";
             // 
             // Reward
             // 
             this.Reward.Name = "Reward";
-            this.Reward.Size = new System.Drawing.Size(152, 26);
+            this.Reward.Size = new System.Drawing.Size(124, 22);
             this.Reward.Text = "奖励管理";
             this.Reward.Click += new System.EventHandler(this.Reward_Click);
             // 
             // Fine
             // 
             this.Fine.Name = "Fine";
-            this.Fine.Size = new System.Drawing.Size(152, 26);
+            this.Fine.Size = new System.Drawing.Size(124, 22);
             this.Fine.Text = "处罚管理";
             this.Fine.Click += new System.EventHandler(this.Fine_Click);
             // 
+            // 统计分析ToolStripMenuItem
+            // 
+            this.统计分析ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.住宿查询ToolStripMenuItem,
+            this.汇总ToolStripMenuItem});
+            this.统计分析ToolStripMenuItem.Name = "统计分析ToolStripMenuItem";
+            this.统计分析ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.统计分析ToolStripMenuItem.Text = "统计分析";
+            // 
+            // 住宿查询ToolStripMenuItem
+            // 
+            this.住宿查询ToolStripMenuItem.Name = "住宿查询ToolStripMenuItem";
+            this.住宿查询ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.住宿查询ToolStripMenuItem.Text = "住宿查询";
+            this.住宿查询ToolStripMenuItem.Click += new System.EventHandler(this.住宿查询ToolStripMenuItem_Click);
+            // 
+            // 汇总ToolStripMenuItem
+            // 
+            this.汇总ToolStripMenuItem.Name = "汇总ToolStripMenuItem";
+            this.汇总ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.汇总ToolStripMenuItem.Text = "汇总统计";
+            // 
             // MainFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1127, 634);
+            this.ClientSize = new System.Drawing.Size(845, 507);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MainFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "宿舍管理系统";
@@ -209,5 +236,8 @@ namespace DormManage.UI
         private System.Windows.Forms.ToolStripMenuItem 奖惩管理ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem Reward;
         private System.Windows.Forms.ToolStripMenuItem Fine;
+        private System.Windows.Forms.ToolStripMenuItem 统计分析ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 住宿查询ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 汇总ToolStripMenuItem;
     }
 }

@@ -60,7 +60,7 @@ namespace DormManage.DAL.StayManage
             var data = DapperHelper.GetList<StaffCheckIn>(firstId);
             string cmdText = $"insert into StaffStayOut(StaffId,CheckInId,StayOutTime,Deduction) values('{staff.StaffId}','{data[0].Id}','{staff.StayOutTime}','{staff.Deduction}')";
             var i = DapperHelper.ExecuteSQL(cmdText);
-            cmdText = $"update StaffCheckIn set IsEnable=0 where StaffId={data[0].Id}";
+            cmdText = $"update StaffCheckIn set IsEnable=0 where StaffId={data[0].StaffId}";
             i = DapperHelper.ExecuteSQL(cmdText);
             return i;
         }
@@ -80,7 +80,7 @@ namespace DormManage.DAL.StayManage
             string cmdText = "";
             if (id == 0)
             {
-                cmdText = $"select t1.*,t2.StairName,t3.SecondName,t4.Id as CheckInId from Staff t1 join Department t2 on t1.DepartmentId=t2.Id join Station t3 on t1.StationId=t3.Id join StaffCheckIn t4 on t1.Id=t4.StaffId where t1.Id in(select StaffId from StaffCheckIn where StaffCheckIn.IsEnable=1)";
+                cmdText = $"select t1.*,t2.StairName,t3.SecondName,t4.Id as CheckInId from Staff t1 join Department t2 on t1.DepartmentId=t2.Id join Station t3 on\r\nt1.StationId=t3.Id join StaffCheckIn t4 on t1.Id=t4.StaffId where t1.Id in(select StaffId from StaffCheckIn)";
                 staffList = DapperHelper.GetList<StaffStayOutDto>(cmdText);
                 return staffList;
             }

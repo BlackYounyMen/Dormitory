@@ -10,7 +10,7 @@ using DormManage.Model;
 namespace DormManage.BLL.StayManage
 {
     /// <summary>
-    /// 员工退宿 业务逻辑层 - 王保宁
+    /// 员工退宿 业务逻辑层 - 
     /// </summary>
     public class StaffStayOutBll
     {
