@@ -39,7 +39,7 @@ namespace DormManage.UI.Statistics
             TotalRoomDto totalRoomDTOs = totalRoomAndBedBll.totalRoomDTO();
 
             //定义工作簿
-            HSSFWorkbook workbook = new HSSFWorkbook();    
+            HSSFWorkbook workbook = new HSSFWorkbook();        
 
             //创建Sheet表单
             var title = "住宿一览表(" + DateTime.Now.Year + "-" + DateTime.Now.Month + ")";
