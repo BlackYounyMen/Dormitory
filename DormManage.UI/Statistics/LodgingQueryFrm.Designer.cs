@@ -65,10 +65,9 @@
             // 
             label6.AutoSize = true;
             label6.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            label6.Location = new System.Drawing.Point(238, 59);
-            label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            label6.Location = new System.Drawing.Point(317, 74);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(40, 19);
+            label6.Size = new System.Drawing.Size(47, 23);
             label6.TabIndex = 10;
             label6.Text = "女:";
             // 
@@ -93,13 +92,14 @@
             this.Column11,
             this.Column12});
             this.DGV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.DGV.Location = new System.Drawing.Point(0, 93);
-            this.DGV.Margin = new System.Windows.Forms.Padding(2);
+            this.DGV.Location = new System.Drawing.Point(0, 116);
+            this.DGV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DGV.Name = "DGV";
             this.DGV.RowHeadersWidth = 51;
             this.DGV.RowTemplate.Height = 27;
-            this.DGV.Size = new System.Drawing.Size(800, 357);
+            this.DGV.Size = new System.Drawing.Size(1067, 446);
             this.DGV.TabIndex = 5;
+            this.DGV.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DGV_CellFormatting_1);
             // 
             // 全部
             // 
@@ -243,19 +243,18 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 93);
+            this.panel1.Size = new System.Drawing.Size(1067, 116);
             this.panel1.TabIndex = 4;
             // 
             // rs
             // 
             this.rs.AutoSize = true;
             this.rs.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.rs.Location = new System.Drawing.Point(704, 59);
-            this.rs.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.rs.Location = new System.Drawing.Point(939, 74);
             this.rs.Name = "rs";
-            this.rs.Size = new System.Drawing.Size(20, 19);
+            this.rs.Size = new System.Drawing.Size(23, 23);
             this.rs.TabIndex = 13;
             this.rs.Text = "1";
             // 
@@ -263,10 +262,9 @@
             // 
             this.fj.AutoSize = true;
             this.fj.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.fj.Location = new System.Drawing.Point(374, 59);
-            this.fj.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.fj.Location = new System.Drawing.Point(499, 74);
             this.fj.Name = "fj";
-            this.fj.Size = new System.Drawing.Size(20, 19);
+            this.fj.Size = new System.Drawing.Size(23, 23);
             this.fj.TabIndex = 12;
             this.fj.Text = "1";
             // 
@@ -274,10 +272,9 @@
             // 
             this.nv.AutoSize = true;
             this.nv.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.nv.Location = new System.Drawing.Point(277, 59);
-            this.nv.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.nv.Location = new System.Drawing.Point(369, 74);
             this.nv.Name = "nv";
-            this.nv.Size = new System.Drawing.Size(20, 19);
+            this.nv.Size = new System.Drawing.Size(23, 23);
             this.nv.TabIndex = 11;
             this.nv.Text = "1";
             // 
@@ -285,10 +282,9 @@
             // 
             this.nan.AutoSize = true;
             this.nan.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.nan.Location = new System.Drawing.Point(169, 59);
-            this.nan.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.nan.Location = new System.Drawing.Point(225, 74);
             this.nan.Name = "nan";
-            this.nan.Size = new System.Drawing.Size(20, 19);
+            this.nan.Size = new System.Drawing.Size(23, 23);
             this.nan.TabIndex = 9;
             this.nan.Text = "1";
             // 
@@ -296,10 +292,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(128, 59);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(171, 74);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 19);
+            this.label4.Size = new System.Drawing.Size(47, 23);
             this.label4.TabIndex = 8;
             this.label4.Text = "男:";
             // 
@@ -307,10 +302,9 @@
             // 
             this.qb.AutoSize = true;
             this.qb.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.qb.Location = new System.Drawing.Point(69, 59);
-            this.qb.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.qb.Location = new System.Drawing.Point(92, 74);
             this.qb.Name = "qb";
-            this.qb.Size = new System.Drawing.Size(20, 19);
+            this.qb.Size = new System.Drawing.Size(23, 23);
             this.qb.TabIndex = 7;
             this.qb.Text = "1";
             // 
@@ -318,19 +312,18 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(10, 59);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(13, 74);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 19);
+            this.label2.Size = new System.Drawing.Size(71, 23);
             this.label2.TabIndex = 6;
             this.label2.Text = "全部:";
             // 
             // btnInput
             // 
-            this.btnInput.Location = new System.Drawing.Point(634, 10);
-            this.btnInput.Margin = new System.Windows.Forms.Padding(2);
+            this.btnInput.Location = new System.Drawing.Point(845, 12);
+            this.btnInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnInput.Name = "btnInput";
-            this.btnInput.Size = new System.Drawing.Size(65, 34);
+            this.btnInput.Size = new System.Drawing.Size(87, 42);
             this.btnInput.TabIndex = 2;
             this.btnInput.Text = "导出";
             this.btnInput.UseVisualStyleBackColor = true;
@@ -340,20 +333,20 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 25F);
-            this.label1.Location = new System.Drawing.Point(352, 10);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(469, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(253, 34);
+            this.label1.Size = new System.Drawing.Size(312, 42);
             this.label1.TabIndex = 1;
             this.label1.Text = "宿舍住宿一览表";
             // 
             // LodgingQueryFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 562);
             this.Controls.Add(this.DGV);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LodgingQueryFrm";
             this.Text = "LodgingQueryFrm";
             this.Load += new System.EventHandler(this.LodgingQueryFrm_Load);

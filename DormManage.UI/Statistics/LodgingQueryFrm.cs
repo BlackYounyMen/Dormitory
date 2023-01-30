@@ -12,7 +12,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
 using System.Reflection;
@@ -21,12 +20,49 @@ namespace DormManage.UI.Statistics
 {
     public partial class LodgingQueryFrm : Form
     {
-        TotalRoomAndBedBll totalRoomAndBedBll = new TotalRoomAndBedBll();
+        private TotalRoomAndBedBll totalRoomAndBedBll = new TotalRoomAndBedBll();
+
         public LodgingQueryFrm()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 判断日期是否在本周
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public bool IsWeek(DateTime date)
+        {
+            DateTime nowTime = DateTime.Now;
+            //星期一为第一天
+            int weeknow = Convert.ToInt32(nowTime.DayOfWeek);
+
+            //因为是以星期一为第一天，所以要判断weeknow等于0时，要向前推6天。
+            weeknow = (weeknow == 0 ? (7 - 1) : (weeknow - 1));
+            int daydiff = (-1) * weeknow;
+
+            //本周第一天
+            DateTime FirstDay = nowTime.AddDays(daydiff);
+            FirstDay = Convert.ToDateTime(FirstDay.Year + "-" + FirstDay.Month + "-" + FirstDay.Day);
+            //星期天为最后一天
+            int lastWeekDay = Convert.ToInt32(nowTime.DayOfWeek);
+            lastWeekDay = lastWeekDay == 0 ? (7 - lastWeekDay) : lastWeekDay;
+            int lastWeekDiff = (7 - lastWeekDay);
+
+            //本周最后一天
+            DateTime LastDay = nowTime.AddDays(lastWeekDiff);
+            LastDay = Convert.ToDateTime(LastDay.Year + "-" + LastDay.Month + "-" + LastDay.Day);
+
+            var result = date <= LastDay && date >= FirstDay;
+            return result;
+        }
+
+        /// <summary>
+        /// 导出excel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInput_Click(object sender, EventArgs e)
         {
             var roomBed = totalRoomAndBedBll.DormitoryDetailDTOs();
@@ -39,7 +75,7 @@ namespace DormManage.UI.Statistics
             TotalRoomDto totalRoomDTOs = totalRoomAndBedBll.totalRoomDTO();
 
             //定义工作簿
-            HSSFWorkbook workbook = new HSSFWorkbook();        
+            HSSFWorkbook workbook = new HSSFWorkbook();
 
             //创建Sheet表单
             var title = "住宿一览表(" + DateTime.Now.Year + "-" + DateTime.Now.Month + ")";
@@ -224,8 +260,6 @@ namespace DormManage.UI.Statistics
             dataRow.CreateCell(15).SetCellStyle(workbook, m.FreeBedNum + "", ConfigNpoiCell.ConfigStyle.NewFont);
         }
 
-     
-
         /// <summary>
         /// 绑定表格数据
         /// </summary>
@@ -249,7 +283,13 @@ namespace DormManage.UI.Statistics
             rs.Text = totalRoomDTOs.bednum;
         }
 
-        private void DGV_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void LodgingQueryFrm_Load(object sender, EventArgs e)
+        {
+            BindDepartment();
+            Get();
+        }
+
+        private void DGV_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
         {
             var arrIndex = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             var num = arrIndex.Count(m => m == e.ColumnIndex);
@@ -270,43 +310,5 @@ namespace DormManage.UI.Statistics
                 }
             }
         }
-
-        /// <summary>
-        /// 判断日期是否在本周
-        /// </summary>
-        /// <param name="date"></param>
-        /// <returns></returns>
-        public bool IsWeek(DateTime date)
-        {
-            DateTime nowTime = DateTime.Now;
-            //星期一为第一天  
-            int weeknow = Convert.ToInt32(nowTime.DayOfWeek);
-
-            //因为是以星期一为第一天，所以要判断weeknow等于0时，要向前推6天。  
-            weeknow = (weeknow == 0 ? (7 - 1) : (weeknow - 1));
-            int daydiff = (-1) * weeknow;
-
-            //本周第一天  
-            DateTime FirstDay = nowTime.AddDays(daydiff);
-            FirstDay = Convert.ToDateTime(FirstDay.Year + "-" + FirstDay.Month + "-" + FirstDay.Day);
-            //星期天为最后一天  
-            int lastWeekDay = Convert.ToInt32(nowTime.DayOfWeek);
-            lastWeekDay = lastWeekDay == 0 ? (7 - lastWeekDay) : lastWeekDay;
-            int lastWeekDiff = (7 - lastWeekDay);
-
-            //本周最后一天  
-            DateTime LastDay = nowTime.AddDays(lastWeekDiff);
-            LastDay = Convert.ToDateTime(LastDay.Year + "-" + LastDay.Month + "-" + LastDay.Day);
-
-            var result = date <= LastDay && date >= FirstDay;
-            return result;
-        }
-
-        private void LodgingQueryFrm_Load(object sender, EventArgs e)
-        {
-            BindDepartment();
-            Get();
-        }
     }
-
 }
